@@ -2,9 +2,9 @@
 include '../koneksi/koneksi.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	$json = file_get_contents('php://input');
-	$data = json_decode($json, true);
-	$latitude = $data['latitude'] ?? 'N/A';
+	$json      = file_get_contents('php://input');
+	$data      = json_decode($json, true);
+	$latitude  = $data['latitude'] ?? 'N/A';
 	$longitude = $data['longitude'] ?? 'N/A';
 
 	if ($latitude !== 'N/A' || $longitude !== 'N/A') {

@@ -1,14 +1,12 @@
 <?php
 include 'koneksi/koneksi.php';
 
-// Ambil status relay (asumsi hanya 1 baris)
-$query = mysqli_query($conn, "SELECT status FROM relay LIMIT 1");
-$row = mysqli_fetch_assoc($query);
+$query  = mysqli_query($conn, "SELECT status FROM relay LIMIT 1");
+$row    = mysqli_fetch_assoc($query);
 $status = $row['status'];
 
-// Ambil lokasi
 $query_lokasi = mysqli_query($conn, "SELECT latitude, longitude FROM lokasi LIMIT 1");
-$lokasi = mysqli_fetch_object($query_lokasi);
+$lokasi       = mysqli_fetch_object($query_lokasi);
 ?>
 
 <div class="row">
@@ -18,20 +16,15 @@ $lokasi = mysqli_fetch_object($query_lokasi);
 				<h5>Kontrol Relay</h5>
 			</div>
 			<div class="card-body text-center">
-				<!-- Status Relay -->
 				<p class="mb-4">
 					Status Relay Saat Ini:
 					<strong class="<?= ($status == 'ON') ? 'text-success' : 'text-danger'; ?>">
 						<?= $status; ?>
 					</strong>
 				</p>
-
-				<!-- Tombol ON -->
 				<form action="command/relay_status.php" method="POST" style="display:inline-block;">
 					<button type="submit" name="relay" value="ON" class="btn btn-success btn-lg px-4">ON</button>
 				</form>
-
-				<!-- Tombol OFF -->
 				<form action="command/relay_status.php" method="POST" style="display:inline-block; margin-left:10px;">
 					<button type="submit" name="relay" value="OFF" class="btn btn-danger btn-lg px-4">OFF</button>
 				</form>
@@ -53,5 +46,4 @@ $lokasi = mysqli_fetch_object($query_lokasi);
 			</div>
 		</div>
 	</div>
-</div>
 </div>

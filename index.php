@@ -6,7 +6,6 @@ if (isset($_GET['page'])) {
 } else {
 	$page = 'home';
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +16,6 @@ if (isset($_GET['page'])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?php echo 'Pico Web'; ?></title>
 
-	<!-- Bootstrap CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -40,15 +38,10 @@ if (isset($_GET['page'])) {
 			</div>
 		</div>
 	</nav>
-
 	<div class="container mt-4">
-		<!-- Content -->
 		<?php include('views/' . $page . '.php'); ?>
 	</div>
-
-	<!-- Bootstrap JS -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 
 </html>

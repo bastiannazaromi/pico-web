@@ -1,2 +1,15 @@
 Latitude: -6.86849941271109, Longitude: 109.10755599727781	05 Jun 2025 - 15:57:29
 Latitude: -6.86849941271109, Longitude: 109.10755599727781	05 Jun 2025 - 15:57:42
+Latitude: -6.868682, Longitude: 109.1075	12 Jun 2025 - 06:05:12
+Latitude: -6.868669, Longitude: 109.1074	12 Jun 2025 - 06:05:37
+Latitude: -6.868513, Longitude: 109.1074	12 Jun 2025 - 06:06:13
+Latitude: -6.86852, Longitude: 109.1074	12 Jun 2025 - 06:06:34
+Latitude: -6.868808, Longitude: 109.1075	12 Jun 2025 - 06:06:54
+Latitude: -6.868805, Longitude: 109.1075	12 Jun 2025 - 06:07:15
+Latitude: -6.867027, Longitude: 109.107	12 Jun 2025 - 06:07:34
+Latitude: -6.867906, Longitude: 109.1074	12 Jun 2025 - 06:07:55
+Latitude: -6.86803, Longitude: 109.1075	12 Jun 2025 - 06:08:15
+Latitude: -6.868254, Longitude: 109.1075	12 Jun 2025 - 06:08:34
+Latitude: -6.868257, Longitude: 109.1075	12 Jun 2025 - 06:08:54
+Latitude: -6.868343, Longitude: 109.1075	12 Jun 2025 - 06:09:15
+Latitude: -6.868361, Longitude: 109.1075	12 Jun 2025 - 06:09:36

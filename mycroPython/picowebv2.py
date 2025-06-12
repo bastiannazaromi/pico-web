@@ -5,7 +5,6 @@ from time import sleep
 from machine import Pin, Timer
 import machine
 import utime
-import dht
 from micropyGPS import MicropyGPS
 from machine import UART, Pin
 
@@ -18,19 +17,6 @@ def convert_to_decimal(coord):
     if direction in ['S', 'W']:
         decimal = -decimal
     return decimal
-
-# DHT22
-def readDHT():
-    try:
-        dSensor.measure()
-        temp = dSensor.temperature()
-        temp_f = (temp * (9/5)) + 32.0
-        hum = dSensor.humidity()
-        print('Temperature= {} C, {} F'.format(temp, temp_f))
-        print('Humidity= {} '.format(hum))
-    except OSError as e:
-        print('Failed to read data from DHT sensor')
-        sleep(5)
         
 # Koneksi WiFi
 SSID = "Loraswat"
@@ -48,9 +34,6 @@ if not wlan.isconnected():
 
 print("Terhubung dengan IP:", wlan.ifconfig()[0])
 time.sleep(3)
-
-from micropyGPS import MicropyGPS
-from machine import UART, Pin
 
 # Inisialisasi micropyGPS
 my_gps = MicropyGPS()
@@ -73,7 +56,6 @@ last_get_time = time.time()
 last_post_time = time.time()
 
 # Loop utama
-dSensor = dht.DHT22(Pin(22))
 led = machine.Pin("LED",machine.Pin.OUT) #led blink
 while True:
     led.value(1)
@@ -83,14 +65,19 @@ while True:
     now = time.time()
 
     # Ambil status relay tiap 10 detik
+    # Ambil status relay tiap 10 detik
     if now - last_get_time >= 10:
         try:
             response = urequests.get(get_status_url)
-            server_status = response.text.strip()
-            print("[GET] Status relay : ", server_status)
+            result = response.json()  # Parse JSON
             response.close()
 
-            if 'ON' in server_status:
+            server_status = result.get('data', {}).get('status', 'OFF')  # Ambil status dari data
+            
+            print("[GET] Status : ", result)
+            print("[GET] Status relay : ", server_status)
+            
+            if server_status == 'ON':
                 relay.value(0)
             else:
                 relay.value(1)
@@ -99,7 +86,7 @@ while True:
         except Exception as e:
             print("Gagal GET : ", e)
             
-    # Kirim gps ke server tiap 10 detik
+    # Kirim gps ke server tiap 20 detik
     if now - last_post_time >= 20:
         try:
             # Update GPS dari serial
@@ -133,7 +120,7 @@ while True:
                 }
 
                 response = urequests.post(post_gps_url, json=data_json)
-                print("[POST] Kirim GPS ke server : ", data_json)
+                print("[POST] Status kirim data GPS : ", response.text.strip())
                 response.close()
             else:
                 print("[POST] GPS belum valid.")
@@ -142,6 +129,3 @@ while True:
         except Exception as e:
             print("Gagal POST : ", e)
     time.sleep(0.1)
-    
-    # tampilkan DHT 22
-    readDHT()
